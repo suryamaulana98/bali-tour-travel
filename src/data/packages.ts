@@ -1,5 +1,13 @@
 import { Package } from '@/types';
 
+// Curated high-resolution Unsplash images for Bali
+export const DEFAULT_IMAGES: Record<string, string> = {
+  'private-yacht-nusa-penida': 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1200',
+  'ubud-adventure-day-trip': 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=1200',
+  'nusa-penida-island-tour': 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&q=80&w=1200',
+  'default': 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=1200',
+};
+
 export const SEED_PACKAGES: Package[] = [
   {
     id: '11111111-1111-1111-1111-111111111111',
@@ -10,14 +18,13 @@ export const SEED_PACKAGES: Package[] = [
     price: 8500000,
     price_type: 'per group',
     max_guests: 15,
-    short_description: 'Jelajahi keindahan Nusa Penida dengan private yacht mewah. Nikmati snorkeling di Manta Bay & Crystal Bay, makan siang di atas kapal, dan sunset yang memukau.',
+    short_description: 'Jelajahi keindahan Nusa Penida dengan private yacht mewah. Snorkeling di Manta Bay & Crystal Bay, makan siang di atas kapal, dan pemandangan sunset memukau.',
     description: 'Rasakan pengalaman berlayar eksklusif menuju Nusa Penida dengan Private Yacht kami. Perjalanan dimulai dari Sanur Harbor menuju perairan kristal Nusa Penida. Anda akan menikmati snorkeling bersama Manta Ray di Manta Bay, berenang di Crystal Bay yang jernih, serta menikmati makan siang fresh di atas kapal. Kapal kami dilengkapi dengan fasilitas premium termasuk sundeck, music system, dan peralatan snorkeling lengkap. Cocok untuk keluarga, pasangan, maupun rombongan yang ingin menikmati Bali dari sisi laut.',
-    hero_image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1200',
+    hero_image: DEFAULT_IMAGES['private-yacht-nusa-penida'],
     gallery: [
-      'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=800',
+      DEFAULT_IMAGES['private-yacht-nusa-penida'],
       'https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&q=80&w=800',
       'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800',
-      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800'
     ],
     destinations: [
       { name: 'Manta Bay', description: 'Snorkeling bersama Manta Ray raksasa di habitat aslinya' },
@@ -85,12 +92,11 @@ export const SEED_PACKAGES: Package[] = [
     max_guests: 20,
     short_description: 'Petualangan seru di Ubud! Kunjungi Monkey Forest, Jungle Swing, ATV ride melalui sawah, art gallery, dan rafting di Sungai Ayung.',
     description: 'Nikmati petualangan seharian di Ubud, jantung budaya dan alam Bali. Perjalanan dimulai dengan mengunjungi Sacred Monkey Forest Sanctuary, dilanjutkan dengan pengalaman seru di Jungle Swing dengan pemandangan lembah yang spektakuler. Rasakan adrenalin dengan ATV ride melintasi persawahan dan hutan. Setelah makan siang, kunjungi art gallery lokal dan akhiri hari dengan rafting menantang di Sungai Ayung. Paket ini sempurna untuk pencinta alam dan petualangan.',
-    hero_image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=1200',
+    hero_image: DEFAULT_IMAGES['ubud-adventure-day-trip'],
     gallery: [
-      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=800',
+      DEFAULT_IMAGES['ubud-adventure-day-trip'],
       'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&q=80&w=800',
       'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80&w=800',
-      'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&q=80&w=800'
     ],
     destinations: [
       { name: 'Sacred Monkey Forest', description: 'Hutan sakral dengan ratusan monyet dan pura kuno' },
@@ -156,11 +162,10 @@ export const SEED_PACKAGES: Package[] = [
     max_guests: 10,
     short_description: "Full day tour ke spot-spot ikonik Nusa Penida: Kelingking Beach, Angel's Billabong, Broken Beach, dan Crystal Bay.",
     description: "Jelajahi keajaiban alam Nusa Penida dalam satu hari penuh! Pulau ini menyimpan pemandangan alam yang luar biasa dan masih sangat alami. Kunjungi Kelingking Beach dengan tebing ikoniknya berbentuk T-Rex, Angel's Billabong yang merupakan infinity pool alami, Broken Beach dengan jembatan batu alam yang menakjubkan, dan Crystal Bay untuk berenang dan bersantai. Perjalanan menyeberang menggunakan speedboat cepat dari Sanur.",
-    hero_image: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&q=80&w=1200',
+    hero_image: DEFAULT_IMAGES['nusa-penida-island-tour'],
     gallery: [
-      'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&q=80&w=800',
+      DEFAULT_IMAGES['nusa-penida-island-tour'],
       'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=800',
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800'
     ],
     destinations: [
       { name: 'Kelingking Beach', description: 'Pantai ikonik dengan tebing berbentuk T-Rex dan air turquoise' },
@@ -229,7 +234,13 @@ export async function getPackagesData(): Promise<Package[]> {
         .order('sort_order', { ascending: true });
 
       if (!error && data && data.length > 0) {
-        return data as Package[];
+        // Ensure image URLs are valid; if local path doesn't exist, map to high-res Unsplash
+        return data.map((pkg: Package) => ({
+          ...pkg,
+          hero_image: pkg.hero_image?.startsWith('http')
+            ? pkg.hero_image
+            : DEFAULT_IMAGES[pkg.slug] || DEFAULT_IMAGES['default'],
+        }));
       }
     }
   } catch (err) {

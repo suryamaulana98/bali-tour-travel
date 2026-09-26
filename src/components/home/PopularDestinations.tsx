@@ -29,16 +29,16 @@ const DESTINATIONS = [
 
 export default function PopularDestinations() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-widest block mb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 text-xs font-bold uppercase tracking-wider mb-3">
             Destinasi Eksotik
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold font-serif text-gray-900 mb-4">
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-serif text-gray-900 tracking-tight mb-4">
             Destinasi Pilihan di Bali
           </h2>
-          <p className="text-gray-600 text-sm sm:text-base">
+          <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
             Temukan tempat-tempat menakjubkan yang kami kunjungi dalam setiap petualangan.
           </p>
         </div>
@@ -47,23 +47,23 @@ export default function PopularDestinations() {
           {DESTINATIONS.map((dest) => (
             <div
               key={dest.name}
-              className="group relative h-80 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
+              className="group relative h-96 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-1.5"
             >
               <Image
                 src={dest.image}
                 alt={dest.name}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                className="object-cover group-hover:scale-110 transition-transform duration-500"
+                className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
 
               <div className="absolute bottom-0 inset-x-0 p-6 text-white">
-                <span className="text-xs font-semibold uppercase tracking-wider text-accent block mb-1">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#E8A838] block mb-1.5">
                   {dest.location}
                 </span>
-                <h3 className="text-xl font-bold font-serif mb-2">{dest.name}</h3>
-                <p className="text-xs text-gray-300 line-clamp-2 opacity-90 group-hover:opacity-100 transition-opacity">
+                <h3 className="text-2xl font-bold font-serif mb-2">{dest.name}</h3>
+                <p className="text-xs sm:text-sm text-gray-200 line-clamp-2 opacity-90 group-hover:opacity-100 transition-opacity">
                   {dest.description}
                 </p>
               </div>
