@@ -17,7 +17,9 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
+  ),
   title: {
     default: "M8 Travel | Private Yacht & Tour Bali",
     template: "%s | M8 Travel Bali",
@@ -64,7 +66,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id" className={`${inter.variable} ${playfair.variable} scroll-smooth scroll-pt-20`}>
+    <html
+      lang="id"
+      className={`${inter.variable} ${playfair.variable} scroll-smooth scroll-pt-20`}
+    >
       <body className="min-h-screen flex flex-col overflow-x-hidden font-sans bg-[#F8F7F3] text-[#0B1F2A] antialiased selection:bg-[#E6A72C]/20 selection:text-[#0B1F2A]">
         <Navbar />
         <main className="flex-1">{children}</main>
