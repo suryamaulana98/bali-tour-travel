@@ -1,40 +1,49 @@
-import Metadata from 'next';
-import PackageCard from '@/components/packages/PackageCard';
-import { getPackagesData } from '@/data/packages';
+import type { Metadata } from "next";
+import Link from "next/link";
+import PackageCard from "@/components/packages/PackageCard";
+import { getPackagesData } from "@/data/packages";
 
-export const metadata = {
-  title: 'Katalog Paket Tour & Private Yacht Bali',
-  description: 'Lihat daftar lengkap paket wisata premium Bali. Dari Private Yacht Nusa Penida hingga Ubud Day Trip dengan harga transparan.',
+export const metadata: Metadata = {
+  title: "Katalog Paket Tour & Private Yacht Bali",
+  description:
+    "Daftar lengkap paket wisata private yacht dan tour eksklusif Bali dengan harga transparan dan pelayanan personal.",
 };
 
 export default async function PackagesPage() {
   const packages = await getPackagesData();
 
   return (
-    <div className="pt-24 pb-20 bg-gray-50/50 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Banner */}
-        <div className="bg-gradient-to-r from-primary-dark via-primary to-cyan-800 rounded-3xl p-8 sm:p-12 text-white mb-12 shadow-xl relative overflow-hidden">
-          <div className="relative z-10 max-w-2xl">
-            <span className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-accent-light block mb-2">
-              Katalog Wisata
-            </span>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-serif mb-4">
-              Paket Tour & Yacht Bali
-            </h1>
-            <p className="text-gray-200 text-sm sm:text-base leading-relaxed font-light">
-              Pilih paket wisata impian Anda di Bali. Semua paket dirancang untuk kenyamanan maksimal dengan pelayanan eksklusif dan privat.
-            </p>
-          </div>
-          <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none transform translate-x-10 translate-y-10">
-            <svg className="w-96 h-96 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2L2 22h20L12 2zm0 3.8L18.6 20H5.4L12 5.8z" />
-            </svg>
-          </div>
+    <div className="pt-24 sm:pt-28 pb-24 bg-[#F8F7F3] min-h-screen">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Breadcrumb Navigation */}
+        <nav
+          aria-label="Breadcrumb"
+          className="flex items-center gap-2 text-xs text-[#64748B] mb-8 font-light"
+        >
+          <Link href="/" className="hover:text-[#087F8C] transition-colors">
+            Home
+          </Link>
+          <span>/</span>
+          <span className="text-[#0B1F2A] font-medium">Paket Tour</span>
+        </nav>
+
+        {/* Editorial Header */}
+        <div className="max-w-2xl mb-10 sm:mb-12">
+          <span className="text-[11px] sm:text-xs font-semibold tracking-[0.18em] uppercase text-[#087F8C] block mb-2">
+            Katalog Wisata Eksklusif
+          </span>
+          <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-serif font-bold text-[#0B1F2A] tracking-tight leading-tight">
+            Paket Private Yacht & Tour Bali
+          </h1>
+          <p className="mt-3 text-[15px] sm:text-base text-[#64748B] leading-relaxed max-w-2xl">
+            Pilihan armada private yacht dan petualangan pulau terbaik. Seluruh
+            itinerary dijalankan secara private khusus untuk grup Anda tanpa
+            digabung peserta lain.
+          </p>
         </div>
 
-        {/* Packages Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* 3-Column Grid Desktop, 2-Column Tablet, 1-Column Mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 items-stretch">
           {packages.map((pkg) => (
             <PackageCard key={pkg.id} packageData={pkg} />
           ))}

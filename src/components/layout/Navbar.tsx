@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
-  { href: '/', label: 'Home' },
-  { href: '/packages', label: 'Paket Tour' },
-  { href: '/about', label: 'Tentang Kami' },
-  { href: '/contact', label: 'Kontak' },
+  { href: "/", label: "Home" },
+  { href: "/packages", label: "Paket Tour" },
+  { href: "/about", label: "Tentang Kami" },
+  { href: "/contact", label: "Kontak" },
 ];
 
 export default function Navbar() {
@@ -20,122 +20,169 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
 
-  const isHome = pathname === '/';
-  const navBg = scrolled || !isHome
-    ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-gray-100 text-gray-900'
-    : 'bg-gradient-to-b from-black/80 via-black/40 to-transparent text-white';
-
-  const linkTextColor = scrolled || !isHome
-    ? 'text-gray-700 hover:text-[#0C7B93] hover:bg-slate-50'
-    : 'text-white/90 hover:text-white hover:bg-white/10';
-
-  const activeLinkColor = scrolled || !isHome
-    ? 'text-[#0C7B93] font-bold bg-cyan-50'
-    : 'text-[#E8A838] font-bold bg-white/15';
+  const isHome = pathname === "/";
+  const isSolid = scrolled || !isHome;
 
   return (
-    <nav
-      id="main-nav"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg}`}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isSolid
+          ? "bg-white/95 backdrop-blur-md border-b border-[#E5E7EB] shadow-xs"
+          : "bg-gradient-to-b from-[#0B1F2A]/80 via-[#0B1F2A]/30 to-transparent"
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+          {/* Logo Brand */}
           <Link
             href="/"
-            className="flex items-center gap-3 transition-transform hover:scale-102"
+            className="flex items-center gap-3 group focus:outline-none"
           >
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#0C7B93] to-[#095E72] flex items-center justify-center shadow-md">
-              <span className="text-white font-bold text-xl font-serif">M8</span>
+            <div className="w-9 h-9 rounded-md bg-[#0B1F2A] border border-[#E6A72C]/50 flex items-center justify-center shrink-0 transition-transform group-hover:scale-105">
+              <span className="font-serif font-bold text-sm text-[#E6A72C]">
+                M8
+              </span>
             </div>
-            <div>
-              <span className="font-extrabold text-xl leading-tight block tracking-tight">M8 Travel</span>
-              <span className={`text-[11px] font-medium leading-tight block tracking-wide uppercase ${scrolled || !isHome ? 'text-gray-500' : 'text-gray-300'}`}>
-                Private Yacht & Tour Bali
+            <div className="flex flex-col">
+              <span
+                className={`font-serif text-base font-bold tracking-tight leading-none transition-colors ${
+                  isSolid ? "text-[#0B1F2A]" : "text-white"
+                }`}
+              >
+                M8 Travel
+              </span>
+              <span
+                className={`text-[9px] sm:text-[10px] tracking-[0.16em] font-medium uppercase mt-0.5 leading-none ${
+                  isSolid ? "text-[#64748B]" : "text-white/70"
+                }`}
+              >
+                PRIVATE YACHT & TOUR BALI
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation Links with Generous Gap */}
-          <div className="hidden md:flex items-center gap-2 lg:gap-3">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             {NAV_LINKS.map((link) => {
-              const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+              const isActive =
+                link.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(link.href);
+
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-4 py-2 rounded-xl text-sm transition-all duration-200 ${
-                    isActive ? activeLinkColor : linkTextColor
+                  className={`text-sm tracking-wide font-medium transition-colors duration-200 relative py-1 ${
+                    isSolid
+                      ? isActive
+                        ? "text-[#087F8C] font-semibold"
+                        : "text-[#0B1F2A]/80 hover:text-[#087F8C]"
+                      : isActive
+                        ? "text-[#E6A72C] font-semibold"
+                        : "text-white/85 hover:text-white"
                   }`}
                 >
                   {link.label}
+                  {isActive && (
+                    <span
+                      className={`absolute bottom-0 left-0 right-0 h-[2px] rounded-full ${
+                        isSolid ? "bg-[#087F8C]" : "bg-[#E6A72C]"
+                      }`}
+                    />
+                  )}
                 </Link>
               );
             })}
 
-            {/* Prominent Booking CTA Button */}
+            {/* CTA Button */}
             <Link
               href="/packages"
-              className="ml-4 px-6 py-2.5 rounded-full bg-[#E8A838] hover:bg-[#CC8E1E] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105"
+              className="inline-flex items-center justify-center min-h-11 px-5 py-3 rounded-full bg-[#E6A72C] hover:bg-[#CF921F] text-[#0B1F2A] text-sm font-semibold uppercase tracking-wider transition-all duration-200 shadow-xs hover:shadow hover:-translate-y-0.5 active:translate-y-0"
             >
               Booking Sekarang
             </Link>
-          </div>
+          </nav>
 
-          {/* Mobile Menu Hamburger Button */}
+          {/* Mobile Hamburger Toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`md:hidden p-2 rounded-xl transition-colors ${
-              scrolled || !isHome ? 'text-gray-800 hover:bg-gray-100' : 'text-white hover:bg-white/10'
+            className={`md:hidden p-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#087F8C] ${
+              isSolid
+                ? "text-[#0B1F2A] hover:bg-slate-100"
+                : "text-white hover:bg-white/10"
             }`}
-            aria-label="Toggle menu"
+            aria-label="Buka menu navigasi"
+            aria-expanded={isOpen}
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               {isOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 7h16M4 12h16M4 17h16"
+                />
               )}
             </svg>
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer */}
       {isOpen && (
-        <div className="md:hidden bg-white text-gray-900 border-t border-gray-100 shadow-2xl animate-slide-down">
-          <div className="px-5 py-4 space-y-2">
+        <div className="md:hidden bg-white border-b border-[#E5E7EB] shadow-lg animate-fade-subtle">
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-5 space-y-2">
             {NAV_LINKS.map((link) => {
-              const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+              const isActive =
+                link.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(link.href);
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`block px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
-                    isActive ? 'bg-cyan-50 text-[#0C7B93]' : 'text-gray-700 hover:bg-gray-50'
+                  className={`block px-3 py-2.5 rounded-md text-sm font-medium transition-colors ${
+                    isActive
+                      ? "bg-[#E6F4F5] text-[#087F8C] font-semibold"
+                      : "text-[#0B1F2A] hover:bg-[#F8F7F3]"
                   }`}
                 >
                   {link.label}
                 </Link>
               );
             })}
-            <Link
-              href="/packages"
-              className="block mt-4 px-5 py-3.5 bg-[#E8A838] hover:bg-[#CC8E1E] text-white rounded-xl text-center font-bold text-base shadow-md"
-            >
-              Booking Sekarang
-            </Link>
+            <div className="pt-3 border-t border-[#E5E7EB]">
+              <Link
+                href="/packages"
+                className="inline-flex items-center justify-center w-full min-h-12 px-6 py-3 text-center rounded-full bg-[#E6A72C] hover:bg-[#CF921F] text-[#0B1F2A] text-sm font-semibold uppercase tracking-wider shadow-xs"
+              >
+                Booking Sekarang
+              </Link>
+            </div>
           </div>
         </div>
       )}
-    </nav>
+    </header>
   );
 }
